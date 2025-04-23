@@ -1,11 +1,10 @@
 {
-  "name": "blueprint-plugin-sandbox-specs",
+  "name": "blueprint-sandbox",
   "version": "0.1.0",
   "description": "Blueprint plugin to generate sandbox spec files for scripts",
   "bugs": "https://github.com/ton-ai-core/blueprint-sandbox/issues",
   "main": "dist/src/index.js",
-  "author": "Georgiy Komarov <jubnzv@gmail.com>",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/ton-ai-core/blueprint-sandbox.git"
@@ -51,8 +50,7 @@
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.5",
     "@ton/sandbox": "^0.16.0",
-    "@ton/test-utils": "^0.4.2",
-    "commander": "^12.0.0"
+    "@ton/test-utils": "^0.4.2"
   },
   "peerDependencies": {
     "@ton-ai-core/blueprint": ">=0.30.16",
@@ -81,12 +79,7 @@
     "github": {
       "release": true
     },
-    "plugins": {
-      "@release-it/keep-a-changelog": {
-        "filename": "CHANGELOG.md",
-        "addUnreleased": true
-      }
-    }
+    "plugins": { }
   },
   "packageManager": "yarn@1.22.22"
 }

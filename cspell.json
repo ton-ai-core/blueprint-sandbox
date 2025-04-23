@@ -6,7 +6,13 @@
     "nowarp",
     "Georgiy",
     "compilables",
-    "Komarov"
+    "Komarov",
+    "timestampt",
+    "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
+    "Masterchain",
+    "workchain",
+    "Seqno",
+    "seqno"
   ],
   "flagWords": [],
   "ignorePaths": [
@@ -14,6 +20,7 @@
     "*.fif",
     "node_modules",
     "test/assets",
-    "dist"
+    "dist",
+    "blueprint-plugin-sandbox-specs-TZ.md"
   ]
 }
