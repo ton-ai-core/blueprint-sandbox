@@ -78,7 +78,12 @@
     "github": {
       "release": true
     },
-    "plugins": {}
+    "plugins": {
+       "@release-it/keep-a-changelog": {
+         "filename": "CHANGELOG.md",
+         "addUnreleased": true
+       }
+    }
   },
   "packageManager": "yarn@1.22.22"
 }
