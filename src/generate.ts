@@ -49,10 +49,10 @@ describe('${scriptName} script', () => {
        const expectedAddress = //... calculate the expected address
        const isDeployed = await mockProvider.isContractDeployed(expectedAddress);
        expect(isDeployed).toBe(true);
-       
+
        const contract = blockchain.openContract(await SomeContract.fromAddress(expectedAddress));
        // Check contract state
-       expect(await contract.getSomething()).toEqual(/* expected value */);
+       expect(await contract.getSomething()).toEqual(undefined /* TODO: replace with expected value */);
        */
 
        // --- Cleanup (if needed) ---
