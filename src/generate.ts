@@ -9,7 +9,7 @@ export interface GenerateOptions {
 
 const specTemplate = (
   scriptName: string,
-  scriptImportPath: string
+  scriptImportPath: string,
 ) => `import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
 // TODO: Specify the path to the required contract types or make it configurable
 // import { SomeContract } from '../wrappers/SomeContract'; 
@@ -121,7 +121,10 @@ export async function generateSpecs(options: GenerateOptions): Promise<void> {
     }
 
     // Calculate relative path for script import
-    const scriptImportPath = path.relative(testsDirAbs, scriptPath.replace(/\.ts$/, ''));
+    const scriptImportPath = path.relative(
+      testsDirAbs,
+      scriptPath.replace(/\.ts$/, ""),
+    );
 
     // Call template without providerImportPath
     const templateContent = specTemplate(scriptName, scriptImportPath);

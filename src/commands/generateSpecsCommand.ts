@@ -5,9 +5,10 @@ export const generateSpecsRunner = async (args: Args, ui: UIProvider) => {
   ui.write("Running spec generator...");
 
   const options = args as any;
-  const scriptsDir = options['scripts-dir'] as string ?? 'scripts';
-  const testsDir = options['tests-dir'] as string ?? 'tests';
-  const force = typeof options['force'] === 'boolean' ? options['force'] : false;
+  const scriptsDir = (options["scripts-dir"] as string) ?? "scripts";
+  const testsDir = (options["tests-dir"] as string) ?? "tests";
+  const force =
+    typeof options["force"] === "boolean" ? options["force"] : false;
 
   try {
     await generateSpecs({
