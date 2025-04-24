@@ -19,15 +19,17 @@ npm install -D blueprint-plugin-sandbox-specs
 Import the plugin and add it to the `plugins` array in your `blueprint.config.ts` file:
 
 ```typescript
-import { SandboxSpecsPlugin } from 'blueprint-plugin-sandbox-specs'; // Adjust path if needed
+import { Config } from '@ton-ai-core/blueprint';
+import { SandboxPlugin } from 'blueprint-plugin-sandbox-specs'; // Adjust path if needed
 
-export const config = {
-  // ... other blueprint configurations
-  plugins: [
-    // ... other plugins
-    new SandboxSpecsPlugin(), 
-  ],
-};
+export const config: Config = {
+  project: {
+    // ... other blueprint configurations
+    plugins: [
+      // ... other plugins
+      new SandboxPlugin(),
+    ],
+  };
 ```
 
 ## Usage

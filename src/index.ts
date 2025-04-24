@@ -4,7 +4,7 @@ import { generateSpecsRunner } from "./commands/generateSpecsCommand";
 // Re-export SandboxNetworkProvider so it can be imported from the package root
 export { SandboxNetworkProvider } from "./helpers/SandboxNetworkProvider";
 
-export class SandboxSpecsPlugin implements Plugin {
+export class SandboxPlugin implements Plugin {
   runners(): PluginRunner[] {
     return [
       {
