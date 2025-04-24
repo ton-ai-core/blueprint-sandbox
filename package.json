@@ -4,6 +4,7 @@
   "description": "Blueprint plugin to generate sandbox spec files for scripts",
   "bugs": "https://github.com/ton-ai-core/blueprint-sandbox/issues",
   "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

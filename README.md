@@ -40,11 +40,12 @@ yarn blueprint generate-specs [options]
 
 The command will scan the specified scripts directory (default: `scripts/`) for `.ts` files (excluding `.spec.ts`) and generate a corresponding `.spec.ts` file in the tests directory (default: `tests/`) using a predefined template.
 
+The template imports `SandboxNetworkProvider` from `@ton-ai-core/blueprint-sandbox/dist/helpers/SandboxNetworkProvider`.
+
 **Options:**
 
 *   `--scripts-dir <dir>`: Directory containing the scripts (default: `scripts`).
 *   `--tests-dir <dir>`: Directory where spec files will be generated (default: `tests`).
-*   `--provider-path <path>`: Relative path from the tests directory to your `SandboxNetworkProvider` implementation (default: automatically calculated relative path to `src/helpers/SandboxNetworkProvider`). The `.ts` extension should be omitted.
 *   `--force`: Overwrite existing `.spec.ts` files (default: `false`).
 
 **Example:**

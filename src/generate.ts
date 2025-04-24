@@ -4,21 +4,20 @@ import * as path from "path";
 export interface GenerateOptions {
   scriptsDir: string;
   testsDir: string;
-  providerPath: string; // Relative path from testsDir to SandboxNetworkProvider
   force: boolean;
 }
 
 const specTemplate = (
   scriptName: string,
-  scriptImportPath: string,
-  providerImportPath: string,
+  scriptImportPath: string
 ) => `import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
 // TODO: Specify the path to the required contract types or make it configurable
 // import { SomeContract } from '../wrappers/SomeContract'; 
 import { run as ${scriptName}Script } from '${scriptImportPath}'; 
 import '@ton/test-utils';
 import { randomBytes } from 'crypto';
-import { SandboxNetworkProvider } from '${providerImportPath}'; 
+// Use package root import for the provider
+import { SandboxNetworkProvider } from '@ton-ai-core/blueprint-sandbox'; 
 
 describe('${scriptName} script', () => {
    let blockchain: Blockchain;
@@ -121,21 +120,11 @@ export async function generateSpecs(options: GenerateOptions): Promise<void> {
       // File doesn't exist, proceed
     }
 
-    // Calculate relative paths for imports
-    const scriptImportPath = path.relative(
-      testsDirAbs,
-      scriptPath.replace(/\.ts$/, ""),
-    );
-    // Ensure provider path starts correctly for relative import
-    const providerImportPath = options.providerPath.startsWith(".")
-      ? options.providerPath
-      : `./${options.providerPath}`;
+    // Calculate relative path for script import
+    const scriptImportPath = path.relative(testsDirAbs, scriptPath.replace(/\.ts$/, ''));
 
-    const templateContent = specTemplate(
-      scriptName,
-      scriptImportPath,
-      providerImportPath,
-    );
+    // Call template without providerImportPath
+    const templateContent = specTemplate(scriptName, scriptImportPath);
 
     try {
       await fs.writeFile(specFilePath, templateContent);
