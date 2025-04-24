@@ -1,6 +1,6 @@
 {
   "name": "@ton-ai-core/blueprint-sandbox",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Blueprint plugin to generate sandbox spec files for scripts",
   "bugs": "https://github.com/ton-ai-core/blueprint-sandbox/issues",
   "main": "dist/src/index.js",
