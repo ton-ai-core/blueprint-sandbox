@@ -52,7 +52,7 @@ describe('${scriptName} script', () => {
 
        const contract = blockchain.openContract(await SomeContract.fromAddress(expectedAddress));
        // Check contract state
-       expect(await contract.getSomething()).toEqual(undefined /* TODO: replace with expected value */);
+       expect(await contract.getSomething()).toEqual();
        */
 
        // --- Cleanup (if needed) ---
