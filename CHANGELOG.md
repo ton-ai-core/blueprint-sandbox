@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Correct comment formatting in test template
+- Remove placeholder argument from test template assertion
+
 ## [0.1.6] - 2025-04-24
 
 ### Fixed
