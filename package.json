@@ -1,6 +1,6 @@
 {
   "name": "@ton-ai-core/blueprint-sandbox",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Blueprint plugin to generate sandbox spec files for scripts",
   "bugs": "https://github.com/ton-ai-core/blueprint-sandbox/issues",
   "main": "dist/src/index.js",
@@ -80,10 +80,10 @@
       "release": true
     },
     "plugins": {
-       "@release-it/keep-a-changelog": {
-         "filename": "CHANGELOG.md",
-         "addUnreleased": true
-       }
+      "@release-it/keep-a-changelog": {
+        "filename": "CHANGELOG.md",
+        "addUnreleased": true
+      }
     }
   },
   "packageManager": "yarn@1.22.22"
