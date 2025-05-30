@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Updated @ton-ai-core/blueprint dependency from ^0.30.16 to ^0.34.5
+- Updated @ton/sandbox dependency from ^0.16.0 to ^0.31.0  
+- Updated @ton/test-utils dependency from ^0.4.2 to ^0.6.0
+
+### Improved
+- Enhanced test template generation to automatically detect if scripts require arguments
+- Added intelligent argument handling in generated test templates
+- Improved script analysis to determine function signatures dynamically
+
 ## [0.1.7] - 2025-04-24
 
 ### Fixed
