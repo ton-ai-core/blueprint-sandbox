@@ -116,9 +116,9 @@ export async function generateSpecs(options: GenerateOptions): Promise<void> {
     console.log(`Processing script: ${scriptPath}`);
     console.log(`Target spec file: ${specFilePath}`);
 
-    let scriptContent = '';
+    let scriptContent = "";
     try {
-      scriptContent = await fs.readFile(scriptPath, 'utf-8');
+      scriptContent = await fs.readFile(scriptPath, "utf-8");
     } catch (readError) {
       console.error(`Failed to read script file: ${scriptPath}`, readError);
       continue; // Skip this script if reading fails
@@ -155,7 +155,11 @@ export async function generateSpecs(options: GenerateOptions): Promise<void> {
     );
 
     // Pass the takesArgs flag to the template function
-    const templateContent = specTemplate(scriptName, scriptImportPath, takesArgs);
+    const templateContent = specTemplate(
+      scriptName,
+      scriptImportPath,
+      takesArgs,
+    );
 
     try {
       await fs.writeFile(specFilePath, templateContent);
