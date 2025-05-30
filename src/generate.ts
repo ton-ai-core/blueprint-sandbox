@@ -10,7 +10,15 @@ export interface GenerateOptions {
 const specTemplate = (
   scriptName: string,
   scriptImportPath: string,
-) => `import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
+  takesArgs: boolean,
+) => {
+  const scriptCall = takesArgs
+    ? `// Provide an empty array for args by default.
+       // TODO: If your script requires arguments, provide them here.
+       await ${scriptName}Script(mockProvider, []);`
+    : `await ${scriptName}Script(mockProvider);`;
+
+  return `import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
 // TODO: Specify the path to the required contract types or make it configurable
 // import { SomeContract } from '../wrappers/SomeContract'; 
 import { run as ${scriptName}Script } from '${scriptImportPath}'; 
@@ -40,7 +48,7 @@ describe('${scriptName} script', () => {
        // Math.random = (): number => Number(DETERMINISTIC_ID % 10000n) / 10000; 
        
        // --- Script execution ---
-       await ${scriptName}Script(mockProvider);
+       ${scriptCall}
        
        // --- Assertions ---
        // Verify that the script performed the expected actions
@@ -60,6 +68,7 @@ describe('${scriptName} script', () => {
    });
 }); 
 `;
+};
 
 async function findScripts(dir: string): Promise<string[]> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -107,6 +116,25 @@ export async function generateSpecs(options: GenerateOptions): Promise<void> {
     console.log(`Processing script: ${scriptPath}`);
     console.log(`Target spec file: ${specFilePath}`);
 
+    let scriptContent = '';
+    try {
+      scriptContent = await fs.readFile(scriptPath, 'utf-8');
+    } catch (readError) {
+      console.error(`Failed to read script file: ${scriptPath}`, readError);
+      continue; // Skip this script if reading fails
+    }
+
+    // Check if the run function signature includes 'args'
+    // This is a basic check; could be improved with regex or AST parsing for robustness
+    const runFunctionRegex = /export\s+async\s+function\s+run\s*\(([^)]*)\)/;
+    const match = scriptContent.match(runFunctionRegex);
+    let takesArgs = false;
+    if (match && match[1]) {
+      // Check if 'args:' or 'args :' exists within the parameters list
+      takesArgs = /\bargs\s*:[^,]*/.test(match[1]);
+    }
+    console.log(`Script ${scriptName} takes args: ${takesArgs}`);
+
     try {
       await fs.access(specFilePath);
       if (!options.force) {
@@ -126,8 +154,8 @@ export async function generateSpecs(options: GenerateOptions): Promise<void> {
       scriptPath.replace(/\.ts$/, ""),
     );
 
-    // Call template without providerImportPath
-    const templateContent = specTemplate(scriptName, scriptImportPath);
+    // Pass the takesArgs flag to the template function
+    const templateContent = specTemplate(scriptName, scriptImportPath, takesArgs);
 
     try {
       await fs.writeFile(specFilePath, templateContent);
