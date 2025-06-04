@@ -12,7 +12,8 @@
     "Masterchain",
     "workchain",
     "Seqno",
-    "seqno"
+    "seqno",
+    "uninit"
   ],
   "flagWords": [],
   "ignorePaths": [

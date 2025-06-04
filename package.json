@@ -1,6 +1,6 @@
 {
   "name": "@ton-ai-core/blueprint-sandbox",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Blueprint plugin to generate sandbox spec files for scripts",
   "bugs": "https://github.com/ton-ai-core/blueprint-sandbox/issues",
   "main": "dist/index.js",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@release-it/keep-a-changelog": "^5.0.0",
     "@tact-lang/compiler": "~1.5.2",
-    "@ton-ai-core/blueprint": "^0.34.5",
+    "@ton-ai-core/blueprint": "^0.35.4",
     "@ton/core": "^0.53.0",
     "@ton/crypto": "^3.2.0",
     "@ton/ton": "^13.9.0",
@@ -50,11 +50,11 @@
     "release-it": "^18.1.0",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.5",
-    "@ton/sandbox": "^0.31.0",
-    "@ton/test-utils": "^0.6.0"
+    "@ton/sandbox": "^0.32.0",
+    "@ton/test-utils": "^0.7.0"
   },
   "peerDependencies": {
-    "@ton-ai-core/blueprint": ">=0.34.5",
+    "@ton-ai-core/blueprint": ">=0.35.4",
     "@ton/core": ">=0.49.2",
     "@ton/crypto": ">=3.2.0",
     "@ton/ton": ">=13.4.1"

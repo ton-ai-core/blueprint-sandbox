@@ -12,9 +12,11 @@ import {
   TupleReader,
   Message,
   Transaction,
+  ContractState,
 } from "@ton/core";
 import { NetworkProvider, UIProvider } from "@ton-ai-core/blueprint";
 import { TonClient, TonClientParameters } from "@ton/ton";
+import { parseFullConfig } from "@ton/ton";
 
 class SandboxTonClient extends TonClient {
   constructor(
@@ -358,5 +360,55 @@ export class SandboxNetworkProvider implements NetworkProvider {
       console.log(`Waiting up to ${waitAttempts} attempts for deployment...`);
       await this.waitForDeploy(contract.address, waitAttempts);
     }
+  }
+
+  async getContractState(address: Address): Promise<ContractState> {
+    const acc = await this.blockchain.getContract(address);
+    const stateType = acc.accountState?.type ?? "uninit";
+
+    if (stateType === "active" && acc.accountState?.type === "active") {
+      return {
+        balance: acc.balance,
+        last: null, // Sandbox doesn't track transaction history
+        state: {
+          type: "active",
+          code: acc.accountState.state.code?.toBoc() ?? null,
+          data: acc.accountState.state.data?.toBoc() ?? null,
+        },
+      };
+    } else if (stateType === "frozen") {
+      return {
+        balance: acc.balance,
+        last: null,
+        state: {
+          type: "frozen",
+          stateHash: Buffer.alloc(32), // Mock state hash for sandbox
+        },
+      };
+    } else {
+      return {
+        balance: acc.balance,
+        last: null,
+        state: {
+          type: "uninit",
+        },
+      };
+    }
+  }
+
+  async getConfig(
+    configAddress?: Address,
+  ): Promise<ReturnType<typeof parseFullConfig>> {
+    // For sandbox environment, return a mock config
+    // In a real implementation, this would fetch the actual blockchain config
+    const mockConfig = {
+      globalVersion: { version: 1 },
+      // Add other required config properties as mocked values
+      // This is a simplified mock for sandbox testing
+    };
+
+    // Return a mock parsed config for sandbox testing
+    // In production, you would use parseFullConfig with actual config data
+    return mockConfig as ReturnType<typeof parseFullConfig>;
   }
 }
