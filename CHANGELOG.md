@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.9] - 2025-06-04
+
 ### Fixed
 - Added missing `getContractState` and `getConfig` methods to `SandboxNetworkProvider` class to properly implement `NetworkProvider` interface
 - Fixed TypeScript compilation errors related to interface implementation
