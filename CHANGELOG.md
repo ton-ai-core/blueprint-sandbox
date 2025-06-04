@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Added missing `getContractState` and `getConfig` methods to `SandboxNetworkProvider` class to properly implement `NetworkProvider` interface
+- Fixed TypeScript compilation errors related to interface implementation
+- Added "uninit" to cspell dictionary
+- Updated dependencies to latest versions (@ton-ai-core/blueprint ^0.35.4, @ton/sandbox ^0.32.0, @ton/test-utils ^0.7.0)
+
 ## [0.1.8] - 2025-05-30
 
 ### Changed
